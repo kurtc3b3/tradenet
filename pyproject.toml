@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "tradenet"
+version = "0.1.0"
+description = "Collect bilateral trade data for Neo4j network visualisation"
+authors = ["Ali Cabukel"]
+readme = "README.md"
+packages = [{ include = "tradenet", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+httpx = "^0.28.1"
+pydantic = "^2.13.4"
+python-dotenv = "^1.2.1"
+rich = "^15.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.3"
+ruff = "^0.15.15"
+
+[tool.poetry.scripts]
+tradenet = "tradenet.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tradenet"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
